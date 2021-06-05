@@ -1,11 +1,17 @@
 import React from "react";
 
-function App() {
-  return (
-    <div>
-      <div>공부하기</div>
-    </div>
-  );
+interface IProps {
+  tasks: { id: number; title: string }[];
 }
 
-export default App;
+const List: React.FC<IProps> = ({ tasks }) => {
+  return (
+    <div>
+      {tasks.map((task) => (
+        <div key={task.id}>{task.title}</div>
+      ))}
+    </div>
+  );
+};
+
+export default List;
