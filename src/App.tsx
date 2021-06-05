@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { ApolloProvider } from "@apollo/client";
+import { client } from "./apollo";
 import List from "./List";
 
 const App = () => {
@@ -8,9 +10,9 @@ const App = () => {
   ]);
 
   return (
-    <React.Fragment>
+    <ApolloProvider client={client}>
       <List tasks={tasks} />
-    </React.Fragment>
+    </ApolloProvider>
   );
 };
 
