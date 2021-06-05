@@ -1,4 +1,13 @@
 import React from "react";
+import { gql } from "@apollo/client";
+
+export const TEST = gql`
+  query GetMe($name: String) {
+    me(name: $name) {
+      _id
+    }
+  }
+`;
 
 interface IProps {
   tasks: { id: number; title: string }[];

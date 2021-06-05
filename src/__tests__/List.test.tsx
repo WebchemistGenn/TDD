@@ -1,26 +1,22 @@
 import { render } from "@testing-library/react";
 import { MockedProvider } from "@apollo/client/testing";
 import { meVar } from "../apollo/cache";
-import List from "../List";
-import { gql } from "@apollo/client";
-
-const TEST = gql`
-  query GetMe($name: String) {
-    me(name: $name) {
-      _id
-    }
-  }
-`;
+import List, { TEST } from "../List";
 
 describe("TDD를 자연스럽게 쓰자", () => {
   const mocks: any = [
     {
       request: { query: TEST, variables: { name: "test" } },
       result: { data: { me: "" } },
+      error: new Error("An error occurred"),
     },
   ];
   beforeEach(() => {
     meVar({ name: "yoon" });
+  });
+
+  it("test", () => {
+    expect(true).toEqual(true);
   });
 
   it("render tasks", async () => {
@@ -30,6 +26,7 @@ describe("TDD를 자연스럽게 쓰자", () => {
       { id: 2, title: "운동하기" },
     ];
 
+    // render
     const { container } = render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <List tasks={tasks} />
